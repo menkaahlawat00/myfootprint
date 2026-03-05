@@ -1,0 +1,218 @@
+[
+  {
+    "id": "swap_meatless_monday",
+    "category": "food",
+    "title": "Try Meatless Monday",
+    "description": "Skip meat one day per week",
+    "impactTons": 0.4,
+    "difficulty": "easy",
+    "applicableTo": ["meat_heavy", "flexitarian"]
+  },
+  {
+    "id": "swap_reduce_red_meat",
+    "category": "food",
+    "title": "Cut red meat in half",
+    "description": "Replace half your red meat meals with chicken or fish",
+    "impactTons": 0.8,
+    "difficulty": "medium",
+    "applicableTo": ["meat_heavy"]
+  },
+  {
+    "id": "swap_go_vegetarian",
+    "category": "food",
+    "title": "Go fully vegetarian",
+    "description": "Eliminate meat from your diet",
+    "impactTons": 1.6,
+    "difficulty": "hard",
+    "applicableTo": ["meat_heavy", "flexitarian"]
+  },
+  {
+    "id": "swap_reduce_food_waste",
+    "category": "food",
+    "title": "Cut food waste by half",
+    "description": "Plan meals and use leftovers to waste less food",
+    "impactTons": 0.3,
+    "difficulty": "easy",
+    "applicableTo": ["meat_heavy", "flexitarian", "vegetarian", "vegan"]
+  },
+  {
+    "id": "swap_go_vegan",
+    "category": "food",
+    "title": "Go fully vegan",
+    "description": "Eliminate all animal products from your diet",
+    "impactTons": 1.8,
+    "difficulty": "hard",
+    "applicableTo": ["meat_heavy", "flexitarian", "vegetarian"]
+  },
+  {
+    "id": "swap_bike_commute",
+    "category": "transit",
+    "title": "Bike to work 2 days a week",
+    "description": "Replace car commute with cycling twice per week",
+    "impactTons": 0.8,
+    "difficulty": "medium",
+    "applicableTo": ["car", "mix"]
+  },
+  {
+    "id": "swap_public_transit",
+    "category": "transit",
+    "title": "Take public transit",
+    "description": "Switch your primary commute to public transit",
+    "impactTons": 2.4,
+    "difficulty": "medium",
+    "applicableTo": ["car"]
+  },
+  {
+    "id": "swap_carpool",
+    "category": "transit",
+    "title": "Carpool to work",
+    "description": "Share rides with coworkers 3+ days per week",
+    "impactTons": 1.5,
+    "difficulty": "easy",
+    "applicableTo": ["car"]
+  },
+  {
+    "id": "swap_remote_work",
+    "category": "transit",
+    "title": "Work from home 2 days a week",
+    "description": "Eliminate your commute two days per week",
+    "impactTons": 0.9,
+    "difficulty": "easy",
+    "applicableTo": ["car", "mix"]
+  },
+  {
+    "id": "swap_ev_switch",
+    "category": "transit",
+    "title": "Switch to an electric vehicle",
+    "description": "Replace your gas car with an EV for daily driving",
+    "impactTons": 3.0,
+    "difficulty": "hard",
+    "applicableTo": ["car"]
+  },
+  {
+    "id": "swap_led_bulbs",
+    "category": "home",
+    "title": "Switch to LED bulbs",
+    "description": "Replace all light bulbs with energy-efficient LEDs",
+    "impactTons": 0.3,
+    "difficulty": "easy",
+    "applicableTo": ["large_house", "small_house", "apartment"]
+  },
+  {
+    "id": "swap_thermostat",
+    "category": "home",
+    "title": "Adjust your thermostat 2 degrees",
+    "description": "Lower in winter, raise in summer by 2 degrees",
+    "impactTons": 0.5,
+    "difficulty": "easy",
+    "applicableTo": ["large_house", "small_house", "apartment"]
+  },
+  {
+    "id": "swap_green_energy",
+    "category": "home",
+    "title": "Switch to green energy plan",
+    "description": "Choose a renewable energy provider for your electricity",
+    "impactTons": 1.8,
+    "difficulty": "medium",
+    "applicableTo": ["large_house", "small_house"]
+  },
+  {
+    "id": "swap_smart_power_strips",
+    "category": "home",
+    "title": "Use smart power strips",
+    "description": "Eliminate phantom energy draw from electronics",
+    "impactTons": 0.2,
+    "difficulty": "easy",
+    "applicableTo": ["large_house", "small_house", "apartment"]
+  },
+  {
+    "id": "swap_weatherize",
+    "category": "home",
+    "title": "Weatherize your home",
+    "description": "Seal drafts and add insulation to reduce heating and cooling",
+    "impactTons": 1.2,
+    "difficulty": "hard",
+    "applicableTo": ["large_house", "small_house"]
+  },
+  {
+    "id": "swap_buy_less",
+    "category": "shopping",
+    "title": "Buy 30% less new stuff",
+    "description": "Pause before purchases and ask if you really need it",
+    "impactTons": 0.5,
+    "difficulty": "easy",
+    "applicableTo": ["frequent", "moderate"]
+  },
+  {
+    "id": "swap_secondhand_first",
+    "category": "shopping",
+    "title": "Try secondhand first",
+    "description": "Check thrift stores and online resale before buying new",
+    "impactTons": 0.6,
+    "difficulty": "easy",
+    "applicableTo": ["frequent", "moderate"]
+  },
+  {
+    "id": "swap_repair_reuse",
+    "category": "shopping",
+    "title": "Repair instead of replace",
+    "description": "Fix broken items instead of buying replacements",
+    "impactTons": 0.4,
+    "difficulty": "medium",
+    "applicableTo": ["frequent", "moderate", "minimal"]
+  },
+  {
+    "id": "swap_sustainable_brands",
+    "category": "shopping",
+    "title": "Choose sustainable brands",
+    "description": "Support companies with verified sustainability practices",
+    "impactTons": 0.3,
+    "difficulty": "medium",
+    "applicableTo": ["frequent", "moderate"]
+  },
+  {
+    "id": "swap_skip_one_flight",
+    "category": "travel",
+    "title": "Skip one round-trip flight",
+    "description": "Replace one flight per year with a closer destination or virtual trip",
+    "impactTons": 1.8,
+    "difficulty": "medium",
+    "applicableTo": ["three_plus", "one_to_two"]
+  },
+  {
+    "id": "swap_train_over_plane",
+    "category": "travel",
+    "title": "Take the train instead",
+    "description": "Choose train travel for trips under 500 miles",
+    "impactTons": 1.2,
+    "difficulty": "medium",
+    "applicableTo": ["three_plus", "one_to_two"]
+  },
+  {
+    "id": "swap_carbon_offset",
+    "category": "travel",
+    "title": "Offset your flights",
+    "description": "Purchase verified carbon offsets for your air travel",
+    "impactTons": 0.9,
+    "difficulty": "easy",
+    "applicableTo": ["three_plus", "one_to_two"]
+  },
+  {
+    "id": "swap_direct_flights",
+    "category": "travel",
+    "title": "Book direct flights only",
+    "description": "Avoid layovers — takeoff and landing use the most fuel",
+    "impactTons": 0.5,
+    "difficulty": "easy",
+    "applicableTo": ["three_plus", "one_to_two"]
+  },
+  {
+    "id": "swap_staycation",
+    "category": "travel",
+    "title": "Try a staycation",
+    "description": "Explore your own region instead of flying somewhere",
+    "impactTons": 2.5,
+    "difficulty": "medium",
+    "applicableTo": ["three_plus"]
+  }
+]

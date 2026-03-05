@@ -1,0 +1,11 @@
+node_modules
+.next
+.git
+.claude
+.claude-flow
+.swarm
+.agents
+docs
+*.md
+.env.local
+.env

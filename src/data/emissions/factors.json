@@ -1,0 +1,30 @@
+{
+  "food": {
+    "meat_heavy": 3.3,
+    "flexitarian": 2.5,
+    "vegetarian": 1.7,
+    "vegan": 1.5
+  },
+  "transit": {
+    "car": 4.6,
+    "mix": 2.8,
+    "transit": 1.2,
+    "bike": 0.1,
+    "walk": 0.0
+  },
+  "home": {
+    "large_house": 5.5,
+    "small_house": 3.8,
+    "apartment": 2.4
+  },
+  "shopping": {
+    "frequent": 2.5,
+    "moderate": 1.5,
+    "minimal": 0.7
+  },
+  "travel": {
+    "three_plus": 4.2,
+    "one_to_two": 1.8,
+    "none": 0.0
+  }
+}

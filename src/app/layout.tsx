@@ -20,16 +20,12 @@ export const metadata: Metadata = {
   description: "Understand and reduce your carbon footprint",
 };
 
-const clerkEnabled =
-  !!process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY &&
-  !process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY.startsWith("dummy");
-
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const inner = (
+  return (
     <html
       lang="en"
       className={`${inter.variable} ${ibmPlexMono.variable}`}
@@ -37,11 +33,4 @@ export default async function RootLayout({
       <body className="antialiased">{children}</body>
     </html>
   );
-
-  if (clerkEnabled) {
-    const { ClerkProvider } = await import("@clerk/nextjs");
-    return <ClerkProvider>{inner}</ClerkProvider>;
-  }
-
-  return inner;
 }

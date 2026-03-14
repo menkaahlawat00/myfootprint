@@ -2,25 +2,25 @@
 
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
+import { useOnboardingStore } from '@/stores/onboarding-store';
 import { CategoryDetail, type SubCategory } from '@/components/explore/category-detail';
 import { SwapToggle } from '@/components/explore/swap-toggle';
 import { Button } from '@/components/ui/button';
 import type { Category } from '@/components/layout/watercolor-bg';
 
-// TODO: Replace with real API data
-const mockCategoryData: Record<
+/** Sub-category percentage splits and swap recommendations per category. */
+const categoryMeta: Record<
   string,
-  { label: string; tons: number; subCategories: SubCategory[]; swaps: { title: string; description: string; impactTons: number }[] }
+  { label: string; subSplits: { name: string; percentage: number }[]; swaps: { title: string; description: string; impactTons: number }[] }
 > = {
   food: {
     label: 'Food',
-    tons: 4.2,
-    subCategories: [
-      { name: 'Meat & Poultry', tons: 1.9, percentage: 45 },
-      { name: 'Dairy', tons: 0.84, percentage: 20 },
-      { name: 'Packaged Goods', tons: 0.63, percentage: 15 },
-      { name: 'Food Waste', tons: 0.5, percentage: 12 },
-      { name: 'Dining Out', tons: 0.33, percentage: 8 },
+    subSplits: [
+      { name: 'Meat & Poultry', percentage: 45 },
+      { name: 'Dairy', percentage: 20 },
+      { name: 'Packaged Goods', percentage: 15 },
+      { name: 'Food Waste', percentage: 12 },
+      { name: 'Dining Out', percentage: 8 },
     ],
     swaps: [
       { title: 'Try Meatless Monday', description: 'Skip meat one day per week', impactTons: 0.4 },
@@ -30,12 +30,11 @@ const mockCategoryData: Record<
   },
   transit: {
     label: 'Transit',
-    tons: 3.8,
-    subCategories: [
-      { name: 'Car Commute', tons: 2.28, percentage: 60 },
-      { name: 'Errands & Trips', tons: 0.76, percentage: 20 },
-      { name: 'Ride-sharing', tons: 0.38, percentage: 10 },
-      { name: 'Public Transit', tons: 0.38, percentage: 10 },
+    subSplits: [
+      { name: 'Car Commute', percentage: 60 },
+      { name: 'Errands & Trips', percentage: 20 },
+      { name: 'Ride-sharing', percentage: 10 },
+      { name: 'Public Transit', percentage: 10 },
     ],
     swaps: [
       { title: 'Bike to work 2 days/week', description: 'Replace car commute with cycling twice per week', impactTons: 0.8 },
@@ -44,12 +43,11 @@ const mockCategoryData: Record<
   },
   home: {
     label: 'Home',
-    tons: 3.1,
-    subCategories: [
-      { name: 'Heating & Cooling', tons: 1.24, percentage: 40 },
-      { name: 'Electricity', tons: 0.93, percentage: 30 },
-      { name: 'Hot Water', tons: 0.62, percentage: 20 },
-      { name: 'Appliances', tons: 0.31, percentage: 10 },
+    subSplits: [
+      { name: 'Heating & Cooling', percentage: 40 },
+      { name: 'Electricity', percentage: 30 },
+      { name: 'Hot Water', percentage: 20 },
+      { name: 'Appliances', percentage: 10 },
     ],
     swaps: [
       { title: 'Switch to LED bulbs', description: 'Replace all incandescent bulbs with LEDs', impactTons: 0.2 },
@@ -58,12 +56,11 @@ const mockCategoryData: Record<
   },
   shopping: {
     label: 'Shopping',
-    tons: 1.8,
-    subCategories: [
-      { name: 'Clothing', tons: 0.72, percentage: 40 },
-      { name: 'Electronics', tons: 0.36, percentage: 20 },
-      { name: 'Household Items', tons: 0.36, percentage: 20 },
-      { name: 'Other Goods', tons: 0.36, percentage: 20 },
+    subSplits: [
+      { name: 'Clothing', percentage: 40 },
+      { name: 'Electronics', percentage: 20 },
+      { name: 'Household Items', percentage: 20 },
+      { name: 'Other Goods', percentage: 20 },
     ],
     swaps: [
       { title: 'Buy secondhand first', description: 'Check thrift stores before buying new', impactTons: 0.3 },
@@ -72,11 +69,10 @@ const mockCategoryData: Record<
   },
   travel: {
     label: 'Travel',
-    tons: 1.3,
-    subCategories: [
-      { name: 'Flights', tons: 0.91, percentage: 70 },
-      { name: 'Hotel Stays', tons: 0.26, percentage: 20 },
-      { name: 'Ground Transport', tons: 0.13, percentage: 10 },
+    subSplits: [
+      { name: 'Flights', percentage: 70 },
+      { name: 'Hotel Stays', percentage: 20 },
+      { name: 'Ground Transport', percentage: 10 },
     ],
     swaps: [
       { title: 'Take one fewer flight per year', description: 'Replace one round trip with a staycation', impactTons: 0.5 },
@@ -85,10 +81,9 @@ const mockCategoryData: Record<
   },
   work: {
     label: 'Work',
-    tons: 0.0,
-    subCategories: [
-      { name: 'Office Energy', tons: 0.0, percentage: 0 },
-      { name: 'Remote Work', tons: 0.0, percentage: 0 },
+    subSplits: [
+      { name: 'Office Energy', percentage: 50 },
+      { name: 'Remote Work', percentage: 50 },
     ],
     swaps: [],
   },
@@ -97,7 +92,26 @@ const mockCategoryData: Record<
 export default function CategoryPage() {
   const params = useParams<{ category: string }>();
   const categoryKey = params.category;
-  const data = mockCategoryData[categoryKey];
+  const meta = categoryMeta[categoryKey];
+  const result = useOnboardingStore((s) => s.result);
+
+  // Get the user's actual tons for this category, or 0
+  const breakdownWithWork = result ? { ...result.breakdown, work: 0.0 } : null;
+  const userTons = breakdownWithWork?.[categoryKey as keyof typeof breakdownWithWork] ?? 0;
+
+  // Build sub-categories from the user's real tons and the percentage splits
+  const data = meta
+    ? {
+        label: meta.label,
+        tons: userTons,
+        subCategories: meta.subSplits.map((s) => ({
+          name: s.name,
+          tons: Math.round((userTons * s.percentage) / 100 * 100) / 100,
+          percentage: s.percentage,
+        })) as SubCategory[],
+        swaps: meta.swaps,
+      }
+    : null;
 
   if (!data) {
     return (

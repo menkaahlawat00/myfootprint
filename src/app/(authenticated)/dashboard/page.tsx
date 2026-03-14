@@ -1,39 +1,49 @@
 'use client';
 
+import Link from 'next/link';
+import { useOnboardingStore } from '@/stores/onboarding-store';
 import { ScoreHero } from '@/components/dashboard/score-hero';
 import { CheckInPrompt } from '@/components/dashboard/check-in-prompt';
 import { CategoryGrid } from '@/components/dashboard/category-grid';
 import { ArticleTeaser } from '@/components/dashboard/article-teaser';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
 
-// TODO: Replace with real API data
-const mockScore = {
-  totalTons: 14.2,
-  earthEquivalents: 1.7,
-  percentileRank: 55,
-  breakdown: {
-    food: 4.2,
-    transit: 3.8,
-    home: 3.1,
-    shopping: 1.8,
-    travel: 1.3,
-    work: 0.0,
-  },
-};
-
-// TODO: Replace with real API data
-const mockTrend = {
-  direction: 'down' as const,
-  amount: 0.4,
-};
-
-// TODO: Replace with real API data
-const mockArticle = {
-  title: 'The Hidden Carbon Cost of Fast Fashion',
-  slug: 'hidden-carbon-cost-of-fast-fashion',
-  category: 'Shopping',
+const defaultArticle = {
+  title: 'Understanding Your Carbon Footprint',
+  slug: 'understanding-carbon-footprint',
+  category: 'Learn',
 };
 
 export default function DashboardPage() {
+  const result = useOnboardingStore((s) => s.result);
+
+  if (!result) {
+    return (
+      <div className="space-y-6">
+        <h1 className="font-display text-[28px] font-semibold leading-tight text-[var(--color-primary)]">
+          Dashboard
+        </h1>
+        <Card className="p-8 text-center">
+          <p className="font-display text-xl font-semibold text-[var(--color-primary)]">
+            No footprint data yet
+          </p>
+          <p className="mt-2 text-[var(--color-text-muted)]">
+            Complete the onboarding quiz to see your carbon footprint breakdown.
+          </p>
+          <Link href="/onboarding" className="mt-4 inline-block">
+            <Button>Take the Quiz</Button>
+          </Link>
+        </Card>
+      </div>
+    );
+  }
+
+  const breakdown = {
+    ...result.breakdown,
+    work: 0.0,
+  };
+
   return (
     <div className="space-y-6">
       {/* Page header */}
@@ -43,9 +53,8 @@ export default function DashboardPage() {
 
       {/* Score hero */}
       <ScoreHero
-        totalTons={mockScore.totalTons}
-        trendDirection={mockTrend.direction}
-        trendAmount={mockTrend.amount}
+        totalTons={result.totalTons}
+        trendDirection="flat"
       />
 
       {/* Weekly check-in CTA */}
@@ -57,8 +66,8 @@ export default function DashboardPage() {
           Your Breakdown
         </h2>
         <CategoryGrid
-          breakdown={mockScore.breakdown}
-          totalTons={mockScore.totalTons}
+          breakdown={breakdown}
+          totalTons={result.totalTons}
         />
       </section>
 
@@ -68,9 +77,9 @@ export default function DashboardPage() {
           Latest Article
         </h2>
         <ArticleTeaser
-          title={mockArticle.title}
-          slug={mockArticle.slug}
-          category={mockArticle.category}
+          title={defaultArticle.title}
+          slug={defaultArticle.slug}
+          category={defaultArticle.category}
         />
       </section>
     </div>

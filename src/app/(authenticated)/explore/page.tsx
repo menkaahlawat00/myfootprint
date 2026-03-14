@@ -1,22 +1,11 @@
 'use client';
 
 import Link from 'next/link';
+import { useOnboardingStore } from '@/stores/onboarding-store';
 import { Card } from '@/components/ui/card';
 import { ProgressBar } from '@/components/ui/progress-bar';
+import { Button } from '@/components/ui/button';
 import { type Category } from '@/components/layout/watercolor-bg';
-
-// TODO: Replace with real API data
-const mockBreakdown: Record<Category, number> = {
-  food: 4.2,
-  transit: 3.8,
-  home: 3.1,
-  shopping: 1.8,
-  travel: 1.3,
-  work: 0.0,
-};
-
-// TODO: Replace with real API data
-const mockTotalTons = 14.2;
 
 const categoryLabels: Record<Category, string> = {
   food: 'Food',
@@ -37,7 +26,35 @@ const categoryDescriptions: Record<Category, string> = {
 };
 
 export default function ExplorePage() {
-  const categories = Object.entries(mockBreakdown) as [Category, number][];
+  const result = useOnboardingStore((s) => s.result);
+
+  if (!result) {
+    return (
+      <div className="space-y-6">
+        <h1 className="font-display text-[28px] font-semibold leading-tight text-[var(--color-primary)]">
+          Explore
+        </h1>
+        <Card className="p-8 text-center">
+          <p className="font-display text-xl font-semibold text-[var(--color-primary)]">
+            No data yet
+          </p>
+          <p className="mt-2 text-[var(--color-text-muted)]">
+            Complete the quiz to explore your carbon breakdown by category.
+          </p>
+          <Link href="/onboarding" className="mt-4 inline-block">
+            <Button>Take the Quiz</Button>
+          </Link>
+        </Card>
+      </div>
+    );
+  }
+
+  const breakdown: Record<Category, number> = {
+    ...result.breakdown,
+    work: 0.0,
+  };
+  const totalTons = result.totalTons;
+  const categories = Object.entries(breakdown) as [Category, number][];
 
   return (
     <div className="space-y-6">
@@ -56,7 +73,7 @@ export default function ExplorePage() {
           Total Footprint
         </p>
         <p className="mt-1 font-mono text-[36px] font-medium leading-none text-[var(--color-primary)]">
-          {mockTotalTons.toFixed(1)}
+          {totalTons.toFixed(1)}
         </p>
         <p className="mt-1 text-[13px] text-[var(--color-text-muted)]">
           tons CO&#x2082;/year
@@ -67,8 +84,8 @@ export default function ExplorePage() {
       <div className="space-y-3">
         {categories.map(([category, tons]) => {
           const percentage =
-            mockTotalTons > 0
-              ? Math.round((tons / mockTotalTons) * 100)
+            totalTons > 0
+              ? Math.round((tons / totalTons) * 100)
               : 0;
 
           return (

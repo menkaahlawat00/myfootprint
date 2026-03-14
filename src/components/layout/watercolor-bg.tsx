@@ -31,13 +31,11 @@ function WatercolorBg({ category, className }: WatercolorBgProps) {
     <div
       aria-hidden="true"
       className={cn(
-        "pointer-events-none absolute -bottom-16 -right-16 h-80 w-80",
+        "pointer-events-none absolute inset-x-0 top-0 h-[3px]",
         className,
       )}
       style={{
-        background: `radial-gradient(ellipse at 60% 60%, ${color} 0%, transparent 70%)`,
-        opacity: 0.1,
-        filter: "blur(40px)",
+        backgroundColor: color,
       }}
     />
   );

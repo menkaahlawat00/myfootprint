@@ -2,7 +2,7 @@
 
 import { Card } from '@/components/ui/card';
 import { ProgressBar } from '@/components/ui/progress-bar';
-import { WatercolorBg, type Category } from '@/components/layout/watercolor-bg';
+import { type Category } from '@/components/layout/watercolor-bg';
 
 interface SubCategory {
   name: string;
@@ -27,7 +27,6 @@ function CategoryDetail({
     <div>
       {/* Category header */}
       <Card className="relative mb-6 overflow-hidden p-6">
-        <WatercolorBg category={category} />
         <div className="relative">
           <h1 className="font-display text-[28px] font-semibold leading-tight text-[var(--color-primary)]">
             {categoryLabel}

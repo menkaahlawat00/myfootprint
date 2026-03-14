@@ -1,7 +1,7 @@
 # My FootPrint — Design System & Frontend Aesthetics
 
-**Version:** 1.0
-**Date:** March 1, 2026
+**Version:** 2.0
+**Date:** March 4, 2026
 
 ---
 
@@ -9,12 +9,12 @@
 
 | Dimension | Choice |
 |---|---|
-| Overall mood | Vibrant maximalist — Spotify Wrapped energy |
-| Typography | Clash Display headlines + mono data accents |
-| Color | Warm earth tones + one electric green pop |
-| Motion | Snappy micro-interactions on every tap |
-| Backgrounds | Illustrated nature scenes, soft watercolor style |
-| Illustration style | Loose, painterly, organic watercolor |
+| Overall mood | Clean, premium Superpower-inspired |
+| Typography | Inter (display + body) + IBM Plex Mono (data) |
+| Color | White backgrounds, near-black text, burnt orange accent |
+| Motion | Smooth ease-out transitions, no spring overshoot |
+| Backgrounds | Clean white surfaces with subtle borders and soft shadows |
+| Visual accents | Thin category-color stripes, not watercolor blobs |
 
 ---
 
@@ -24,95 +24,70 @@ Copy the block below into your system prompt when generating any frontend code f
 
 ```xml
 <frontend_aesthetics>
-You are building My FootPrint, a carbon footprint tracking web app. Do NOT default to
-generic AI aesthetics. Every screen should feel like a poster worth screenshotting.
+You are building My FootPrint, a carbon footprint tracking web app. The design is
+clean, premium, and confident — inspired by Superpower.com's aesthetic.
 
-MOOD: Vibrant maximalist meets warm naturalism. Think Spotify Wrapped's boldness
-married to a botanical print studio. High energy, high craft, grounded in nature.
-Not neon-tech. Not granola-quiet. The tension between earthy warmth and electric
-data visualization IS the brand.
+MOOD: Minimal and purposeful. White space is a feature, not empty space. Every
+element earns its place. The interface should feel like a well-designed tool that
+respects the user's attention. Confident but not cold. Premium but not pretentious.
 
 TYPOGRAPHY:
-- Headlines: Clash Display (variable weight). Use extreme size jumps — 3x to 5x
-  between body and display text. Headlines should dominate the visual hierarchy.
-  Bold, geometric, unapologetic.
-- Data / Numbers: JetBrains Mono or Fira Code. All scores, tons, percentages,
-  and metrics are displayed in monospace. Numbers are first-class visual citizens,
-  not afterthoughts. They should feel like they belong on a data dashboard.
-- Body text: Space Grotesk or similar clean geometric sans-serif. Readable,
-  neutral, does not compete with display type.
-- AVOID: Inter, Roboto, Arial, system fonts, or any generic sans-serif.
-  Never use the same font for headlines and body. Contrast is everything.
+- Headlines + Body: Inter (variable weight). Clean geometric sans-serif that works
+  across all sizes. Use weight contrast (400 body, 600 headings, 700 hero) rather
+  than font contrast.
+- Data / Numbers: IBM Plex Mono. All scores, tons, percentages, and metrics are
+  displayed in monospace. Numbers are first-class visual citizens.
+- AVOID: Decorative or display fonts. One font family (Inter) handles everything
+  except data.
 
 COLOR & THEME:
-Use CSS variables for all colors. The palette is warm and earthy with one
-electric accent that makes data POP.
-- --color-base: #F5F0E8 (warm sand) — primary background
-- --color-surface: #E8E0D0 (light sage) — card backgrounds, containers
-- --color-primary: #2D5016 (deep forest) — primary text, icons, headers
-- --color-secondary: #C4956A (terracotta) — secondary elements, borders, tags
-- --color-accent: #00E676 (ELECTRIC GREEN) — scores, CTAs, progress, positive change.
-  This is the ONLY bright color. Use it sparingly and intentionally. When it
-  appears, it should feel like a signal flare on a calm landscape.
-- --color-text: #1A1A18 (near black) — body text
-- --color-text-muted: #7A7A6E (stone gray) — secondary text, labels
-- --color-negative: #E57373 (soft coral) — negative change, alerts. Use rarely.
-- --color-celebrate: #FFD54F (golden yellow) — milestones, celebrations
-- --color-accent-glow: rgba(0, 230, 118, 0.15) — subtle glow behind electric green elements
-Do NOT use purple gradients, blue-white corporate palettes, or evenly-distributed
-rainbow schemes. The palette is WARM with ONE electric exception.
+Use CSS variables for all colors. The palette is neutral with one bold accent.
+- --color-base: #FAFAFA (near white) — primary background
+- --color-surface: #FFFFFF (white) — card backgrounds, containers
+- --color-primary: #1A1A1A (near black) — primary text, icons, headers
+- --color-secondary: #6B7280 (cool gray) — secondary elements, borders, tags
+- --color-accent: #FC5F2B (BURNT ORANGE) — scores, CTAs, progress, positive change.
+  This is the ONLY warm color. Use it sparingly and intentionally. When it appears,
+  it commands attention.
+- --color-text: #1A1A1A (near black) — body text
+- --color-text-muted: #9CA3AF (gray) — secondary text, labels
+- --color-negative: #EF4444 (red) — negative change, alerts
+- --color-celebrate: #F59E0B (amber) — milestones, celebrations
+- --color-accent-glow: rgba(252, 95, 43, 0.08) — subtle glow behind accent elements
+Do NOT use warm earth tones, green accents, or watercolor effects.
+Text on accent backgrounds MUST be white for contrast.
 
 MOTION & INTERACTIONS:
-Every tap should feel satisfying. This is a tactile, snappy UI.
-- Buttons: scale to 0.96 on press with a spring-back ease (cubic-bezier(0.34, 1.56, 0.64, 1)).
+Smooth and restrained. No spring physics or overshoot.
+- Buttons: scale to 0.96 on press with smooth ease-out (cubic-bezier(0.25, 0.46, 0.45, 0.94)).
   Subtle shadow lift on hover.
-- Toggles / switches: snap with spring physics. Overshoot slightly then settle.
-- Cards: lift with soft shadow increase on hover/focus. 150ms transitions.
-- Number changes (score updates): morphing count-up animation, not instant replacement.
-- Swipeable cards (reveal): smooth slide with momentum and slight bounce at edges.
-- Page transitions: quick crossfade (200ms). No slow fades, no sliding pages.
-- DO NOT add ambient/continuous animations (floating particles, breathing backgrounds).
-  Motion lives in RESPONSE to user action, not in the background.
+- Toggles / switches: smooth 200ms transition. No bounce.
+- Cards: lift with soft shadow increase on hover/focus. 200ms transitions.
+- Number changes (score updates): smooth count-up animation, 800ms duration.
+- Page transitions: quick crossfade (300ms). No sliding or bouncing.
+- DO NOT add spring animations, overshoot, or bounce effects.
 - All transitions respect prefers-reduced-motion.
 
 BACKGROUNDS & SURFACES:
-Each content category has its own soft watercolor nature illustration as a
-background element. These are NOT full-bleed wallpapers — they are subtle,
-translucent accent illustrations that sit behind content with low opacity (8-15%).
-- Food category: loose watercolor leaves, vegetables, organic shapes
-- Transit category: flowing road lines, gentle hill silhouettes, bike outlines
-- Home category: soft rooftop silhouettes, chimney smoke wisps, window patterns
-- Shopping category: fabric textures, flowing bag shapes, textile patterns
-- Travel category: cloud formations, horizon lines, airplane contrails
-- Banking/Work category: abstract flowing lines, subtle wave patterns
-Cards sit ON the warm sand background with soft shadows (no harsh drop-shadows).
-Use box-shadow with warm tones: rgba(45, 80, 22, 0.08). The background should
-feel like handmade paper — consider a subtle grain texture at 3-5% opacity on
-the base layer.
+Clean and minimal. No watercolor illustrations or grain textures.
+- Cards have white backgrounds with subtle borders (rgba(0,0,0,0.08)).
+- Category identity is communicated via a thin 3px color stripe at card top.
+- Shadows are neutral: rgba(0, 0, 0, 0.06). Soft and understated.
+- No radial gradient blobs or decorative background elements.
 
 LAYOUT:
-- Generous whitespace. Let content breathe. Minimum 24px padding on containers.
-- Card-based layout with consistent border-radius (16px for cards, 12px for
-  inner elements, 8px for buttons).
-- Mobile-first responsive. On desktop, content max-width 480px centered (app-like).
-- The reveal experience is FULL-SCREEN swipeable cards, no navigation chrome visible.
+- Generous whitespace. Let content breathe. Minimum 24px padding.
+- Card-based layout with consistent border-radius (16px cards, 12px inner, 8px buttons).
+- Mobile-first responsive. On desktop, content max-width 640px centered.
 - Dashboard uses vertical scroll with clear section breaks.
 
-AVOID THESE AI DEFAULTS:
-- Generic gradient hero sections
-- Thin 1px borders everywhere
-- Gray-on-white low-contrast text
-- Perfectly symmetrical layouts
-- Stock illustration style (undraw, humaaans)
-- Overly rounded "pill" everything
+AVOID THESE:
+- Warm earth tones (sand, terracotta, forest green)
+- Watercolor or grain texture backgrounds
+- Spring/bounce animations
+- Electric green accents
+- Overly decorative typography
 - Shadow-heavy neumorphism
-- Blue as a primary color
-- Centered paragraph text
-- Generic card grids with no hierarchy
-
-Interpret these guidelines creatively. Each screen should feel intentionally
-designed, not templated. Prioritize visual hierarchy — one element per screen
-should clearly dominate attention.
 </frontend_aesthetics>
 ```
 
@@ -121,9 +96,9 @@ should clearly dominate attention.
 ## Typography Scale
 
 ```
---font-display: 'Clash Display', sans-serif
---font-mono: 'JetBrains Mono', 'Fira Code', monospace
---font-body: 'Space Grotesk', sans-serif
+--font-display: 'Inter', sans-serif
+--font-mono: 'IBM Plex Mono', monospace
+--font-body: 'Inter', sans-serif
 
 --text-hero:    72px / 1.0  / weight 700  (reveal cards, celebration screens)
 --text-display: 48px / 1.1  / weight 600  (page titles, score headline)
@@ -140,29 +115,29 @@ should clearly dominate attention.
 ```css
 :root {
   /* Base palette */
-  --color-base: #F5F0E8;
-  --color-surface: #E8E0D0;
-  --color-primary: #2D5016;
-  --color-secondary: #C4956A;
-  --color-accent: #00E676;
-  --color-text: #1A1A18;
-  --color-text-muted: #7A7A6E;
-  --color-negative: #E57373;
-  --color-celebrate: #FFD54F;
+  --color-base: #FAFAFA;
+  --color-surface: #FFFFFF;
+  --color-primary: #1A1A1A;
+  --color-secondary: #6B7280;
+  --color-accent: #FC5F2B;
+  --color-text: #1A1A1A;
+  --color-text-muted: #9CA3AF;
+  --color-negative: #EF4444;
+  --color-celebrate: #F59E0B;
 
   /* Functional tokens */
-  --color-accent-glow: rgba(0, 230, 118, 0.15);
-  --color-shadow: rgba(45, 80, 22, 0.08);
-  --color-border: rgba(45, 80, 22, 0.1);
-  --color-overlay: rgba(26, 26, 24, 0.5);
+  --color-accent-glow: rgba(252, 95, 43, 0.08);
+  --color-shadow: rgba(0, 0, 0, 0.06);
+  --color-border: rgba(0, 0, 0, 0.08);
+  --color-overlay: rgba(0, 0, 0, 0.5);
 
-  /* Category accent colors (used for watercolor tinting) */
-  --color-cat-food: #6B8E23;
-  --color-cat-transit: #8B7355;
-  --color-cat-home: #A0522D;
-  --color-cat-shopping: #9370DB;
-  --color-cat-travel: #5F9EA0;
-  --color-cat-work: #708090;
+  /* Category accent colors */
+  --color-cat-food: #22C55E;
+  --color-cat-transit: #3B82F6;
+  --color-cat-home: #F59E0B;
+  --color-cat-shopping: #A855F7;
+  --color-cat-travel: #06B6D4;
+  --color-cat-work: #6366F1;
 }
 ```
 
@@ -193,28 +168,28 @@ should clearly dominate attention.
 
 ```css
 /* Resting card */
---shadow-sm: 0 1px 3px var(--color-shadow);
+--shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
 
 /* Hovered / focused card */
---shadow-md: 0 4px 12px var(--color-shadow);
+--shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
 
 /* Lifted / dragged element */
---shadow-lg: 0 8px 24px var(--color-shadow);
+--shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.06);
 
-/* Electric green glow (for score, CTA buttons) */
---shadow-glow: 0 0 20px var(--color-accent-glow);
+/* Accent glow (for score, CTA buttons) */
+--shadow-glow: 0 0 20px rgba(252, 95, 43, 0.12);
 ```
 
 ## Motion Tokens
 
 ```css
-/* Snappy interaction (buttons, toggles) */
---ease-snap: cubic-bezier(0.34, 1.56, 0.64, 1);
---duration-snap: 150ms;
+/* Smooth interaction (buttons, toggles) — no overshoot */
+--ease-snap: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+--duration-snap: 200ms;
 
 /* Smooth transition (cards, panels) */
 --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
---duration-smooth: 200ms;
+--duration-smooth: 300ms;
 
 /* Count-up / number morph */
 --duration-count: 800ms;
@@ -223,28 +198,20 @@ should clearly dominate attention.
 --stagger-delay: 80ms;
 ```
 
-## Watercolor Illustration Guidelines
+## Category Color Stripes
 
 ### Purpose
-Category-specific watercolor illustrations serve as ambient visual anchors that immediately communicate which domain the user is in. They are NOT decoration — they are wayfinding.
+Category-specific color stripes serve as subtle visual anchors that communicate which domain the user is in. They are thin (3px), positioned at the top of cards.
 
-### Specifications
-- **Opacity:** 8-15% over the base background. Never compete with content.
-- **Position:** Bottom-right or bottom-left of the viewport/card. Bleed off the edge.
-- **Style:** Loose, painterly watercolor. Visible brush strokes. Colors bleed outside lines.
-- **Palette:** Tinted with the category accent color, desaturated to blend with the warm sand base.
-- **Format:** SVG with embedded raster textures, or optimized PNG with transparency.
-- **Size:** Max 400x400px rendered. Lazy-loaded. Not critical path.
-
-### Per-Category Subjects
-| Category | Illustration Elements |
-|---|---|
-| Food | Scattered leaves, tomato cross-sections, herb sprigs, grain stalks |
-| Transit | Flowing road ribbon, gentle hills, bicycle wheel, footprints |
-| Home | Roofline silhouette, chimney wisps, window with plant, warm light glow |
-| Shopping | Draped fabric, open tote, thread spools, textile weave pattern |
-| Travel | Layered cloud banks, distant horizon, sun arc, contrail curves |
-| Banking/Work | Abstract flowing streams, ripple patterns, branching lines |
+### Per-Category Colors
+| Category | Color | Hex |
+|---|---|---|
+| Food | Green | #22C55E |
+| Transit | Blue | #3B82F6 |
+| Home | Amber | #F59E0B |
+| Shopping | Purple | #A855F7 |
+| Travel | Cyan | #06B6D4 |
+| Work | Indigo | #6366F1 |
 
 ---
 
@@ -253,43 +220,44 @@ Category-specific watercolor illustrations serve as ambient visual anchors that 
 ### Score Display
 ```
 ┌─────────────────────────────┐
+│  border-top: 3px accent     │
 │                             │
-│   YOUR FOOTPRINT            │  ← Clash Display, --text-subhead
+│   YOUR FOOTPRINT            │  ← Inter 500, --text-subhead
 │                             │
-│   14.2                      │  ← JetBrains Mono, --text-hero
-│   tons CO₂/year             │  ← Space Grotesk, --text-caption
+│   14.2                      │  ← IBM Plex Mono, --text-hero
+│   tons CO₂/year             │  ← Inter, --text-caption
 │                             │
-│   ▼ 0.4 from last month     │  ← Mono, electric green, with glow
+│   ▼ 0.4 from last month     │  ← Mono, burnt orange
 │                             │
 └─────────────────────────────┘
-  Surface card on sand background
-  Electric green on the delta number ONLY
+  White card with border on base background
+  Burnt orange on the delta number ONLY
 ```
 
 ### Category Card
 ```
 ┌─────────────────────────────┐
-│  🍃 ░░░░░░░░░░░░░░░░░░░░░  │  ← watercolor leaves at 10% opacity
+│  ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬  │  ← 3px category color stripe
 │                             │
-│  Food                       │  ← Clash Display, deep forest
-│  4.2 tons · 28%             │  ← Mono, terracotta
+│  Food                       │  ← Inter 600, near black
+│  4.2 tons · 28%             │  ← Mono, cool gray
 │                             │
-│  ████████████░░░░░░░░ 28%   │  ← Progress bar, electric green fill
+│  ████████████░░░░░░░░ 28%   │  ← Progress bar, burnt orange fill
 │                             │
 │  What if you tried          │
-│  Meatless Monday? →         │  ← CTA in electric green
+│  Meatless Monday? →         │  ← CTA in burnt orange
 │                             │
 └─────────────────────────────┘
-  Tap lifts card (shadow-md), spring-back ease
+  White card, border border-border, shadow-sm
 ```
 
 ### CTA Button
 ```
 ┌─────────────────────────────┐
-│      [ Commit to this ]     │  ← electric green bg, deep forest text
+│      [ Commit to this ]     │  ← burnt orange bg, WHITE text
 └─────────────────────────────┘
-  radius-sm (8px)
+  rounded-md (8px)
   On press: scale(0.96) + shadow-glow
-  On release: spring back to scale(1)
+  On release: smooth ease back to scale(1)
   On hover: shadow-md
 ```

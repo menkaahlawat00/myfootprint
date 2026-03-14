@@ -1,7 +1,6 @@
 'use client';
 
-import { useState } from 'react';
-import { SignOutButton } from '@clerk/nextjs';
+import { useState, useEffect, type ComponentType, type PropsWithChildren } from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
@@ -17,8 +16,14 @@ const daysOfWeek = [
 ] as const;
 
 export default function ProfilePage() {
-  // TODO: Replace with real API data
   const [notificationDay, setNotificationDay] = useState<string>('monday');
+  const [SignOutBtn, setSignOutBtn] = useState<ComponentType<PropsWithChildren> | null>(null);
+
+  useEffect(() => {
+    import('@clerk/nextjs')
+      .then((mod) => setSignOutBtn(() => mod.SignOutButton))
+      .catch(() => {});
+  }, []);
 
   return (
     <div className="space-y-6">
@@ -63,7 +68,7 @@ export default function ProfilePage() {
                 'active:scale-[0.96] motion-reduce:active:scale-100',
                 'cursor-pointer',
                 notificationDay === day.key
-                  ? 'bg-[var(--color-accent)] text-[var(--color-primary)] shadow-sm'
+                  ? 'bg-[var(--color-accent)] text-white shadow-sm'
                   : 'bg-[var(--color-surface)] text-[var(--color-text-muted)] hover:bg-[var(--color-surface)]/80',
               )}
             >
@@ -74,11 +79,17 @@ export default function ProfilePage() {
       </Card>
 
       {/* Sign out */}
-      <SignOutButton>
-        <Button variant="secondary" className="w-full">
+      {SignOutBtn ? (
+        <SignOutBtn>
+          <Button variant="secondary" className="w-full">
+            Sign out
+          </Button>
+        </SignOutBtn>
+      ) : (
+        <Button variant="secondary" className="w-full" disabled>
           Sign out
         </Button>
-      </SignOutButton>
+      )}
     </div>
   );
 }

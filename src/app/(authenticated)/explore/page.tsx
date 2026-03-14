@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { Card } from '@/components/ui/card';
 import { ProgressBar } from '@/components/ui/progress-bar';
-import { WatercolorBg, type Category } from '@/components/layout/watercolor-bg';
+import { type Category } from '@/components/layout/watercolor-bg';
 
 // TODO: Replace with real API data
 const mockBreakdown: Record<Category, number> = {
@@ -74,7 +74,6 @@ export default function ExplorePage() {
           return (
             <Link key={category} href={`/explore/${category}`}>
               <Card hoverable className="relative overflow-hidden p-5">
-                <WatercolorBg category={category} />
                 <div className="relative flex items-center justify-between">
                   <div>
                     <p className="font-display text-base font-semibold text-[var(--color-primary)]">

@@ -100,7 +100,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       </header>
 
       {/* MDX content with typography prose styling */}
-      <article className="prose prose-stone max-w-none prose-headings:font-display prose-headings:text-[var(--color-primary)] prose-h2:text-xl prose-h2:mt-8 prose-h2:mb-3 prose-h3:text-lg prose-h3:mt-6 prose-h3:mb-2 prose-p:text-[var(--color-text)] prose-p:leading-relaxed prose-strong:text-[var(--color-primary)] prose-ul:text-[var(--color-text)] prose-li:marker:text-[var(--color-accent)] prose-a:text-[var(--color-accent)] prose-a:no-underline hover:prose-a:underline">
+      <article className="prose prose-neutral max-w-none prose-headings:font-display prose-headings:text-[var(--color-primary)] prose-h2:text-xl prose-h2:mt-8 prose-h2:mb-3 prose-h3:text-lg prose-h3:mt-6 prose-h3:mb-2 prose-p:text-[var(--color-text)] prose-p:leading-relaxed prose-strong:text-[var(--color-primary)] prose-ul:text-[var(--color-text)] prose-li:marker:text-[var(--color-accent)] prose-a:text-[var(--color-accent)] prose-a:no-underline hover:prose-a:underline">
         <MDXRemote source={content} />
       </article>
     </div>

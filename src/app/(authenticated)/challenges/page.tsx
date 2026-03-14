@@ -111,7 +111,7 @@ export default function ChallengesPage() {
             onClick={() => setTab(t)}
             className={`rounded-full px-4 py-2 text-sm font-medium transition-all duration-[var(--duration-snap)] ease-[var(--ease-snap)] ${
               tab === t
-                ? 'bg-[var(--color-accent)] text-[var(--color-primary)] shadow-sm'
+                ? 'bg-[var(--color-accent)] text-white shadow-sm'
                 : 'bg-[var(--color-surface)] text-[var(--color-text-muted)] hover:bg-[var(--color-surface)]/80'
             }`}
           >

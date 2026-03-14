@@ -36,15 +36,15 @@ function Tooltip({ content, children, className }: TooltipProps) {
           role="tooltip"
           className={cn(
             "absolute bottom-full left-1/2 z-50 mb-2 -translate-x-1/2",
-            "whitespace-nowrap rounded-md bg-surface px-3 py-1.5",
-            "text-sm text-text shadow-md",
+            "whitespace-nowrap rounded-md bg-primary px-3 py-1.5",
+            "text-sm text-white shadow-md",
             "animate-[tooltip-in_150ms_ease-out]",
             "pointer-events-none",
           )}
         >
           {content}
           {/* Tooltip arrow */}
-          <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-surface" />
+          <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-primary" />
         </div>
       )}
     </div>

@@ -34,15 +34,14 @@ function CheckInSuccess({
         initial={{ scale: 0.3, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{
-          type: 'spring',
-          stiffness: 260,
-          damping: 20,
+          duration: 0.5,
+          ease: [0.25, 0.46, 0.45, 0.94],
           delay: 0.1,
         }}
         className="mb-6 flex h-24 w-24 items-center justify-center rounded-full bg-[var(--color-accent)]"
       >
         <svg
-          className="h-14 w-14 text-[var(--color-primary)]"
+          className="h-14 w-14 text-white"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"

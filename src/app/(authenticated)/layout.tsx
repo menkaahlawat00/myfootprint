@@ -24,7 +24,7 @@ export default async function AuthenticatedLayout({
   return (
     <LazyMotionProvider>
       <div className="min-h-screen bg-[var(--color-base)] pb-20">
-        <main className="mx-auto max-w-[480px] px-6 py-8">
+        <main className="mx-auto max-w-[640px] px-6 py-8">
           {children}
         </main>
         <BottomNav />

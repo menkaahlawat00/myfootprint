@@ -51,7 +51,7 @@ function QuestionHousehold() {
             key={size}
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: index * 0.06, duration: 0.3, ease: [0.34, 1.56, 0.64, 1] }}
+            transition={{ delay: index * 0.06, duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
             onClick={() => handleSelect(size)}
             className={cn(
               'flex flex-col items-center justify-center rounded-lg border-2 py-6 transition-all',

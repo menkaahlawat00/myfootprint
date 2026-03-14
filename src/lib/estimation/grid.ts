@@ -7,6 +7,7 @@
 
 import gridRegions from '@/data/emissions/grid-regions.json';
 import gridIntensity from '@/data/emissions/grid-intensity.json';
+import { estimateElectricity } from '@/lib/climatiq/client';
 
 // ---------- Types ----------
 
@@ -65,4 +66,47 @@ export function adjustHomeEmissions(baseEmissions: number, zipCode: string): num
   const localIntensity = getGridIntensity(zipCode);
   const ratio = localIntensity / NATIONAL_AVERAGE_INTENSITY;
   return Math.round(baseEmissions * ratio * 100) / 100;
+}
+
+// ---------- Climatiq-enhanced ----------
+
+/** Average annual electricity consumption by home type (kWh). */
+const HOME_KWH: Record<string, number> = {
+  large_house: 14000,
+  small_house: 10500,
+  apartment: 6500,
+};
+
+/** Map zip code prefix to Climatiq region code (US state). */
+const ZIP_TO_STATE: Record<string, string> = {
+  '100': 'US-NY', '900': 'US-CA', '941': 'US-CA', '606': 'US-IL',
+  '770': 'US-TX', '331': 'US-FL', '981': 'US-WA', '021': 'US-MA',
+  '191': 'US-PA', '303': 'US-GA', '481': 'US-MI', '852': 'US-AZ',
+};
+
+function zipToClimatiqRegion(zipCode: string): string {
+  const prefix3 = zipCode.substring(0, 3);
+  return ZIP_TO_STATE[prefix3] ?? 'US';
+}
+
+/**
+ * Async version that tries Climatiq electricity data first,
+ * falling back to static eGRID adjustments.
+ *
+ * @returns Adjusted home emissions in tons CO2e/year
+ */
+export async function adjustHomeEmissionsAsync(
+  baseEmissions: number,
+  zipCode: string,
+  homeType: string,
+): Promise<{ value: number; fromClimatiq: boolean }> {
+  const region = zipToClimatiqRegion(zipCode);
+  const annualKwh = HOME_KWH[homeType] ?? HOME_KWH['small_house'];
+
+  const result = await estimateElectricity(region, annualKwh);
+  if (result !== null) {
+    return { value: Math.round(result * 100) / 100, fromClimatiq: true };
+  }
+
+  return { value: adjustHomeEmissions(baseEmissions, zipCode), fromClimatiq: false };
 }

@@ -18,7 +18,7 @@ function Skeleton({ variant = "text", className }: SkeletonProps) {
     <div
       aria-hidden="true"
       className={cn(
-        "animate-pulse bg-surface",
+        "animate-pulse bg-base",
         variantStyles[variant],
         className,
       )}

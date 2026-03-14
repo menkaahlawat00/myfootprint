@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { Card } from '@/components/ui/card';
 import { ProgressBar } from '@/components/ui/progress-bar';
-import { WatercolorBg, type Category } from '@/components/layout/watercolor-bg';
+import { type Category } from '@/components/layout/watercolor-bg';
 
 interface CategoryBreakdown {
   food: number;
@@ -48,7 +48,6 @@ function CategoryGrid({ breakdown, totalTons }: CategoryGridProps) {
         return (
           <Link key={category} href={`/explore/${category}`}>
             <Card hoverable className="relative overflow-hidden p-4">
-              <WatercolorBg category={category} />
               <div className="relative">
                 <div className="mb-2 flex items-center gap-2">
                   <span aria-hidden="true" className="text-lg">

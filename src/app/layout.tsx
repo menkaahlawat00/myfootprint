@@ -1,29 +1,18 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
+import { Inter, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
 });
 
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-jetbrains-mono",
+const ibmPlexMono = IBM_Plex_Mono({
+  variable: "--font-ibm-plex-mono",
   subsets: ["latin"],
   display: "swap",
-});
-
-/**
- * Using Space Grotesk for --font-display as an interim fallback
- * until Clash Display woff2 files are available. Space Grotesk is a bold
- * geometric sans that works well for headlines at heavy weights.
- */
-const clashDisplayFallback = Space_Grotesk({
-  variable: "--font-clash-display",
-  subsets: ["latin"],
-  display: "swap",
-  weight: ["600", "700"],
+  weight: ["400", "500", "600"],
 });
 
 export const metadata: Metadata = {
@@ -43,7 +32,7 @@ export default async function RootLayout({
   const inner = (
     <html
       lang="en"
-      className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} ${clashDisplayFallback.variable}`}
+      className={`${inter.variable} ${ibmPlexMono.variable}`}
     >
       <body className="antialiased">{children}</body>
     </html>

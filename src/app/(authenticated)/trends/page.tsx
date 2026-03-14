@@ -81,11 +81,11 @@ function generateMockStreak(): boolean[] {
 
 // Category color tokens
 const CATEGORY_COLORS = {
-  food: '#6B8E23',
-  transit: '#8B7355',
-  home: '#A0522D',
-  shopping: '#9370DB',
-  services: '#708090',
+  food: '#22C55E',
+  transit: '#3B82F6',
+  home: '#F59E0B',
+  shopping: '#A855F7',
+  services: '#6366F1',
 };
 
 export default function TrendsPage() {
@@ -424,7 +424,7 @@ export default function TrendsPage() {
                 }}
                 className={`flex h-9 w-9 items-center justify-center rounded-lg text-xs font-medium ${
                   checked
-                    ? 'bg-[var(--color-accent)] text-[var(--color-primary)]'
+                    ? 'bg-[var(--color-accent)] text-white'
                     : 'bg-[var(--color-surface)] text-[var(--color-text-muted)]'
                 }`}
                 title={`Week ${i + 1}: ${checked ? 'Checked in' : 'Missed'}`}

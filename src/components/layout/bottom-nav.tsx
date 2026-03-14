@@ -121,7 +121,7 @@ function BottomNav() {
       aria-label="Main navigation"
       className="fixed inset-x-0 bottom-0 z-50 border-t border-border bg-surface/95 backdrop-blur-sm"
     >
-      <div className="mx-auto flex max-w-[480px] items-center justify-around">
+      <div className="mx-auto flex max-w-[640px] items-center justify-around">
         {navItems.map((item) => {
           const isActive =
             pathname === item.href || pathname?.startsWith(item.href + "/");

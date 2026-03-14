@@ -7,8 +7,8 @@
  * recommendations into a single calculation result.
  */
 
-import { getAllCategoryEmissions, type EmissionProfile, type CategoryBreakdown } from './factors';
-import { adjustHomeEmissions } from './grid';
+import { getAllCategoryEmissions, getAllCategoryEmissionsAsync, type EmissionProfile, type CategoryBreakdown } from './factors';
+import { adjustHomeEmissions, adjustHomeEmissionsAsync } from './grid';
 import { calculatePercentile } from './benchmarks';
 import { getTopSwap } from './swaps';
 
@@ -41,6 +41,7 @@ export interface FootprintResult {
     description: string;
     impactTons: number;
   };
+  dataSource?: 'static' | 'climatiq' | 'mixed';
 }
 
 // ---------- Constants ----------
@@ -145,5 +146,103 @@ export function calculateFootprint(input: FootprintInput): FootprintResult {
     percentileRank,
     breakdown: roundedBreakdown,
     topSwap,
+    dataSource: 'static' as const,
+  };
+}
+
+/**
+ * Async version that uses Climatiq API for live emission factors,
+ * falling back to static data per category if API calls fail.
+ */
+export async function calculateFootprintAsync(input: FootprintInput): Promise<FootprintResult> {
+  const profile: EmissionProfile = {
+    dietType: input.dietType,
+    transitMode: input.transitMode,
+    homeType: input.homeType,
+    shoppingFrequency: input.shoppingFrequency,
+    flightsPerYear: input.flightsPerYear,
+  };
+
+  // Step 1: Get emissions from Climatiq (with static fallback per category)
+  const { breakdown: baseBreakdown, source: factorsSource } =
+    await getAllCategoryEmissionsAsync(profile);
+
+  const breakdown: CategoryBreakdown = { ...baseBreakdown };
+  let homeFromClimatiq = false;
+
+  // Step 2: Adjust home emissions via Climatiq electricity data
+  if (input.zipCode) {
+    const homeResult = await adjustHomeEmissionsAsync(
+      baseBreakdown.home,
+      input.zipCode,
+      input.homeType,
+    );
+    breakdown.home = homeResult.value;
+    homeFromClimatiq = homeResult.fromClimatiq;
+  }
+
+  // Step 3: Apply custom overrides
+  if (input.customOverrides) {
+    for (const [key, value] of Object.entries(input.customOverrides)) {
+      if (key in breakdown) {
+        breakdown[key as keyof CategoryBreakdown] = value;
+      }
+    }
+  }
+
+  // Round
+  const roundedBreakdown = {
+    food: Math.round(breakdown.food * 10) / 10,
+    transit: Math.round(breakdown.transit * 10) / 10,
+    home: Math.round(breakdown.home * 10) / 10,
+    shopping: Math.round(breakdown.shopping * 10) / 10,
+    travel: Math.round(breakdown.travel * 10) / 10,
+  };
+
+  const totalTons =
+    Math.round(
+      (roundedBreakdown.food +
+        roundedBreakdown.transit +
+        roundedBreakdown.home +
+        roundedBreakdown.shopping +
+        roundedBreakdown.travel) *
+        10,
+    ) / 10;
+
+  const earthEquivalents = Math.round((totalTons / GLOBAL_SUSTAINABLE_AVG) * 10) / 10;
+  const percentileRank = calculatePercentile(totalTons, input.zipCode);
+
+  const topSwapResult = getTopSwap(profile, roundedBreakdown);
+  const topSwap = topSwapResult
+    ? {
+        category: topSwapResult.category,
+        title: topSwapResult.title,
+        description: topSwapResult.description,
+        impactTons: topSwapResult.impactTons,
+      }
+    : {
+        category: 'food',
+        title: 'Reduce food waste',
+        description: 'Plan meals and use leftovers to waste less food',
+        impactTons: 0.3,
+      };
+
+  // Determine overall data source
+  let dataSource: 'static' | 'climatiq' | 'mixed';
+  if (factorsSource === 'climatiq' && (!input.zipCode || homeFromClimatiq)) {
+    dataSource = 'climatiq';
+  } else if (factorsSource === 'static' && !homeFromClimatiq) {
+    dataSource = 'static';
+  } else {
+    dataSource = 'mixed';
+  }
+
+  return {
+    totalTons,
+    earthEquivalents,
+    percentileRank,
+    breakdown: roundedBreakdown,
+    topSwap,
+    dataSource,
   };
 }

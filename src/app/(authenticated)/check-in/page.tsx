@@ -230,7 +230,7 @@ export default function CheckInPage() {
               aria-hidden="true"
             >
               <svg
-                className="h-10 w-10 text-[var(--color-primary)]"
+                className="h-10 w-10 text-white"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -387,7 +387,7 @@ export default function CheckInPage() {
                       >
                         {isOn && (
                           <svg
-                            className="h-3.5 w-3.5 text-[var(--color-primary)]"
+                            className="h-3.5 w-3.5 text-white"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"

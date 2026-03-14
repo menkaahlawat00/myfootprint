@@ -77,9 +77,8 @@ function MilestoneModal({ type, open, onClose, onShare }: MilestoneModalProps) {
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.5, opacity: 0 }}
             transition={{
-              type: 'spring',
-              stiffness: 300,
-              damping: 22,
+              duration: 0.5,
+              ease: [0.25, 0.46, 0.45, 0.94],
             }}
             className="relative w-full max-w-[360px] rounded-xl bg-[var(--color-base)] p-8 text-center shadow-lg"
             onClick={(e) => e.stopPropagation()}
@@ -134,9 +133,8 @@ function MilestoneModal({ type, open, onClose, onShare }: MilestoneModalProps) {
               initial={{ scale: 0, rotate: -180 }}
               animate={{ scale: 1, rotate: 0 }}
               transition={{
-                type: 'spring',
-                stiffness: 260,
-                damping: 20,
+                duration: 0.5,
+                ease: [0.25, 0.46, 0.45, 0.94],
                 delay: 0.15,
               }}
               className="relative mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full text-5xl"

@@ -13,7 +13,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
-    "bg-accent text-primary font-semibold shadow-sm hover:shadow-glow focus-visible:shadow-glow",
+    "bg-accent text-white font-semibold shadow-sm hover:shadow-glow focus-visible:shadow-glow",
   secondary:
     "bg-surface text-primary border border-border hover:bg-surface/80 focus-visible:ring-2 focus-visible:ring-accent/40",
   ghost:
@@ -21,9 +21,9 @@ const variantStyles: Record<ButtonVariant, string> = {
 };
 
 const sizeStyles: Record<ButtonSize, string> = {
-  sm: "px-3 py-1.5 text-sm rounded-sm",
-  md: "px-5 py-2.5 text-base rounded-sm",
-  lg: "px-7 py-3.5 text-lg rounded-sm",
+  sm: "px-3 py-1.5 text-sm rounded-md",
+  md: "px-5 py-2.5 text-base rounded-md",
+  lg: "px-7 py-3.5 text-lg rounded-md",
 };
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(

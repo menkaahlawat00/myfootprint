@@ -30,7 +30,7 @@ export default function OnboardingLayout({ children }: { children: React.ReactNo
       <div className="flex min-h-screen flex-col bg-base">
         {/* Top bar with progress */}
         <header className="sticky top-0 z-50 bg-base/95 backdrop-blur-sm">
-          <div className="mx-auto flex max-w-[480px] items-center gap-3 px-6 pt-4 pb-2">
+          <div className="mx-auto flex max-w-[640px] items-center gap-3 px-6 pt-4 pb-2">
             {/* Back button */}
             {showBackButton ? (
               <button
@@ -92,7 +92,7 @@ export default function OnboardingLayout({ children }: { children: React.ReactNo
         </header>
 
         {/* Content area */}
-        <main className="mx-auto flex w-full max-w-[480px] flex-1 flex-col px-6 py-6">
+        <main className="mx-auto flex w-full max-w-[640px] flex-1 flex-col px-6 py-6">
           {children}
         </main>
       </div>

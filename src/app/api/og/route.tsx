@@ -41,7 +41,7 @@ export async function GET(request: NextRequest) {
           flexDirection: 'column',
           justifyContent: 'space-between',
           padding: '60px',
-          background: 'linear-gradient(135deg, #F5F0E8 0%, #E8E0D0 40%, #C4956A 100%)',
+          background: 'linear-gradient(135deg, #FAFAFA 0%, #FFFFFF 40%, #6B7280 100%)',
           fontFamily: 'system-ui, sans-serif',
         }}
       >
@@ -65,7 +65,7 @@ export async function GET(request: NextRequest) {
                 width: '48px',
                 height: '48px',
                 borderRadius: '12px',
-                backgroundColor: '#2D5016',
+                backgroundColor: '#1A1A1A',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -78,7 +78,7 @@ export async function GET(request: NextRequest) {
               style={{
                 fontSize: '32px',
                 fontWeight: 700,
-                color: '#2D5016',
+                color: '#1A1A1A',
                 letterSpacing: '-0.02em',
               }}
             >
@@ -103,7 +103,7 @@ export async function GET(request: NextRequest) {
               fontWeight: 600,
               textTransform: 'uppercase',
               letterSpacing: '0.1em',
-              color: '#7A7A6E',
+              color: '#9CA3AF',
             }}
           >
             My Carbon Footprint
@@ -119,7 +119,7 @@ export async function GET(request: NextRequest) {
               style={{
                 fontSize: '120px',
                 fontWeight: 800,
-                color: '#2D5016',
+                color: '#1A1A1A',
                 lineHeight: 1,
                 letterSpacing: '-0.03em',
               }}
@@ -130,7 +130,7 @@ export async function GET(request: NextRequest) {
               style={{
                 fontSize: '28px',
                 fontWeight: 500,
-                color: '#7A7A6E',
+                color: '#9CA3AF',
               }}
             >
               tons CO2/yr
@@ -158,7 +158,7 @@ export async function GET(request: NextRequest) {
               style={{
                 fontSize: '36px',
                 fontWeight: 700,
-                color: '#2D5016',
+                color: '#1A1A1A',
               }}
             >
               {earthEquivalents}
@@ -166,7 +166,7 @@ export async function GET(request: NextRequest) {
             <span
               style={{
                 fontSize: '14px',
-                color: '#7A7A6E',
+                color: '#9CA3AF',
                 fontWeight: 500,
               }}
             >
@@ -179,7 +179,7 @@ export async function GET(request: NextRequest) {
             style={{
               width: '2px',
               height: '48px',
-              backgroundColor: 'rgba(45, 80, 22, 0.15)',
+              backgroundColor: 'rgba(26, 26, 26, 0.15)',
             }}
           />
 
@@ -195,7 +195,7 @@ export async function GET(request: NextRequest) {
               style={{
                 fontSize: '36px',
                 fontWeight: 700,
-                color: '#00E676',
+                color: '#FC5F2B',
               }}
             >
               Top {100 - parseInt(percentile, 10)}%
@@ -203,7 +203,7 @@ export async function GET(request: NextRequest) {
             <span
               style={{
                 fontSize: '14px',
-                color: '#7A7A6E',
+                color: '#9CA3AF',
                 fontWeight: 500,
               }}
             >
@@ -216,7 +216,7 @@ export async function GET(request: NextRequest) {
             style={{
               width: '2px',
               height: '48px',
-              backgroundColor: 'rgba(45, 80, 22, 0.15)',
+              backgroundColor: 'rgba(26, 26, 26, 0.15)',
             }}
           />
 
@@ -226,7 +226,7 @@ export async function GET(request: NextRequest) {
               display: 'flex',
               alignItems: 'center',
               gap: '8px',
-              backgroundColor: '#00E676',
+              backgroundColor: '#FC5F2B',
               padding: '12px 24px',
               borderRadius: '12px',
             }}
@@ -235,7 +235,7 @@ export async function GET(request: NextRequest) {
               style={{
                 fontSize: '18px',
                 fontWeight: 700,
-                color: '#2D5016',
+                color: '#FFFFFF',
               }}
             >
               Calculate yours free

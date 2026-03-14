@@ -12,7 +12,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { footprintInputSchema } from '@/lib/validations';
-import { calculateFootprint } from '@/lib/estimation/engine';
+import { calculateFootprint, calculateFootprintAsync } from '@/lib/estimation/engine';
 
 export async function POST(request: NextRequest) {
   try {
@@ -37,16 +37,29 @@ export async function POST(request: NextRequest) {
 
     const input = parseResult.data;
 
-    // Calculate the footprint
-    const result = calculateFootprint({
-      zipCode: input.zipCode,
-      dietType: input.dietType,
-      transitMode: input.transitMode,
-      homeType: input.homeType,
-      shoppingFrequency: input.shoppingFrequency,
-      flightsPerYear: input.flightsPerYear,
-      customOverrides: input.customOverrides,
-    });
+    // Calculate the footprint (try Climatiq first, fall back to static)
+    let result;
+    try {
+      result = await calculateFootprintAsync({
+        zipCode: input.zipCode,
+        dietType: input.dietType,
+        transitMode: input.transitMode,
+        homeType: input.homeType,
+        shoppingFrequency: input.shoppingFrequency,
+        flightsPerYear: input.flightsPerYear,
+        customOverrides: input.customOverrides,
+      });
+    } catch {
+      result = calculateFootprint({
+        zipCode: input.zipCode,
+        dietType: input.dietType,
+        transitMode: input.transitMode,
+        homeType: input.homeType,
+        shoppingFrequency: input.shoppingFrequency,
+        flightsPerYear: input.flightsPerYear,
+        customOverrides: input.customOverrides,
+      });
+    }
 
     return NextResponse.json(result, { status: 200 });
   } catch (error) {

@@ -17,7 +17,7 @@ function ProgressBar({ value, color, className }: ProgressBarProps) {
       aria-valuenow={clampedValue}
       aria-valuemin={0}
       aria-valuemax={100}
-      className={cn("h-2 w-full overflow-hidden rounded-full bg-surface", className)}
+      className={cn("h-2 w-full overflow-hidden rounded-full bg-base", className)}
     >
       <div
         className={cn(

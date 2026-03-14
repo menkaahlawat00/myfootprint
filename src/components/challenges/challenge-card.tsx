@@ -69,7 +69,7 @@ function ChallengeCard({ challenge, index = 0 }: ChallengeCardProps) {
       transition={{
         duration: 0.35,
         delay: index * 0.08,
-        ease: [0.34, 1.56, 0.64, 1],
+        ease: [0.25, 0.46, 0.45, 0.94],
       }}
     >
       <Card hoverable className="relative overflow-hidden p-5">

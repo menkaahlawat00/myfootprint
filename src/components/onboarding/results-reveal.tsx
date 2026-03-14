@@ -66,7 +66,7 @@ function getCharacter(totalTons: number): FootprintCharacter {
     return {
       name: 'Eco Warrior',
       description: 'You are already living lighter than most Americans. Keep leading the way!',
-      gradient: 'from-[#00E676] to-[#00C853]',
+      gradient: 'from-[#22C55E] to-[#16A34A]',
       icon: (
         <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
           <path d="M11 20A7 7 0 0 1 9.8 6.9C15.5 4.9 17 3.5 19 2c1 2 2 4.5 2 8 0 5.5-4.78 10-10 10Z" />
@@ -79,7 +79,7 @@ function getCharacter(totalTons: number): FootprintCharacter {
     return {
       name: 'Conscious Consumer',
       description: 'You are close to the national average. A few swaps could make a big difference.',
-      gradient: 'from-[#FFD54F] to-[#FFC107]',
+      gradient: 'from-[#F59E0B] to-[#D97706]',
       icon: (
         <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
           <circle cx="12" cy="12" r="10" />
@@ -93,7 +93,7 @@ function getCharacter(totalTons: number): FootprintCharacter {
     return {
       name: 'Carbon Cruiser',
       description: 'Your footprint is above average, but there is plenty of room for impactful changes.',
-      gradient: 'from-[#FF9800] to-[#F57C00]',
+      gradient: 'from-[#FC5F2B] to-[#EA580C]',
       icon: (
         <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
           <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z" />
@@ -104,7 +104,7 @@ function getCharacter(totalTons: number): FootprintCharacter {
   return {
     name: 'Heavy Footprint',
     description: 'Your footprint is well above average, but even small steps can lead to meaningful reductions.',
-    gradient: 'from-[#E57373] to-[#D32F2F]',
+    gradient: 'from-[#EF4444] to-[#DC2626]',
     icon: (
       <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
@@ -370,7 +370,7 @@ function ResultsReveal() {
             key="score"
             initial={{ opacity: 0, scale: 0.8, y: 30 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ type: 'spring', stiffness: 200, damping: 20 }}
+            transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
             <Card className="relative overflow-hidden p-8 text-center">
               {/* Gradient glow background */}
@@ -379,7 +379,7 @@ function ResultsReveal() {
                 className="pointer-events-none absolute inset-0"
                 style={{
                   background: `radial-gradient(ellipse at 50% 0%, var(--color-accent) 0%, transparent 60%)`,
-                  opacity: 0.08,
+                  opacity: 0.04,
                 }}
               />
               <p className="relative mb-2 font-mono text-xs uppercase tracking-wider text-text-muted">
@@ -422,7 +422,7 @@ function ResultsReveal() {
             key="character"
             initial={{ opacity: 0, scale: 0.8, y: 30 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ type: 'spring', stiffness: 200, damping: 20 }}
+            transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
             <Card className={`relative overflow-hidden p-6`}>
               <div
@@ -466,7 +466,7 @@ function ResultsReveal() {
             key="breakdown"
             initial={{ opacity: 0, scale: 0.8, y: 30 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ type: 'spring', stiffness: 200, damping: 20 }}
+            transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
             <Card className="p-6">
               <p className="mb-4 font-mono text-xs uppercase tracking-wider text-text-muted">
@@ -493,7 +493,7 @@ function ResultsReveal() {
             key="impact"
             initial={{ opacity: 0, scale: 0.8, y: 30 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ type: 'spring', stiffness: 200, damping: 20 }}
+            transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
             <Card className="relative overflow-hidden border-2 border-accent/20 p-6">
               <div
@@ -501,7 +501,7 @@ function ResultsReveal() {
                 className="pointer-events-none absolute inset-0"
                 style={{
                   background: 'radial-gradient(ellipse at 100% 100%, var(--color-accent) 0%, transparent 60%)',
-                  opacity: 0.06,
+                  opacity: 0.04,
                 }}
               />
               <p className="relative mb-2 font-mono text-xs uppercase tracking-wider text-text-muted">
@@ -539,7 +539,7 @@ function ResultsReveal() {
             key="percentile"
             initial={{ opacity: 0, scale: 0.8, y: 30 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ type: 'spring', stiffness: 200, damping: 20 }}
+            transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
             <Card className="p-6 text-center">
               <p className="mb-2 font-mono text-xs uppercase tracking-wider text-text-muted">
@@ -590,7 +590,7 @@ function ResultsReveal() {
             key="cta"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ type: 'spring', stiffness: 180, damping: 20 }}
+            transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
             <Card className="relative overflow-hidden p-8 text-center">
               <div
@@ -605,18 +605,13 @@ function ResultsReveal() {
                 Ready to reduce your footprint?
               </p>
               <p className="relative mt-2 text-text-muted">
-                Create a free account to track your progress, take on challenges, and see your impact over time.
+                Track your progress, take on challenges, and see your impact over time.
               </p>
-              <div className="relative mt-6 flex flex-col gap-3">
-                <Link href="/sign-up">
+              <div className="relative mt-6">
+                <Link href="/dashboard">
                   <Button size="lg" className="w-full rounded-lg text-lg">
-                    Create Account
+                    Go to Dashboard
                   </Button>
-                </Link>
-                <Link href="/sign-in">
-                  <button className="w-full py-2 text-sm text-text-muted transition-colors hover:text-primary">
-                    Already have an account? Sign in
-                  </button>
                 </Link>
               </div>
             </Card>
